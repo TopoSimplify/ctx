@@ -6,6 +6,10 @@ type ContextGeometries struct {
 	list []*ContextGeometry
 }
 
+func NewContexts() *ContextGeometries{
+	return &ContextGeometries{list : []*ContextGeometry{}}
+}
+
 func (self *ContextGeometries) Len() int {
 	return len(self.list)
 }
