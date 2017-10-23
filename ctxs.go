@@ -36,3 +36,7 @@ func (self *ContextGeometries) Sort() *ContextGeometries {
 	sort.Sort(self)
 	return self
 }
+
+func (self *ContextGeometries) DataView() []*ContextGeometry {
+	return self.list
+}
