@@ -6,8 +6,8 @@ type ContextGeometries struct {
 	list []*ContextGeometry
 }
 
-func NewContexts() *ContextGeometries {
-	return &ContextGeometries{list: []*ContextGeometry{}}
+func NewContexts(geometries ...*ContextGeometry) *ContextGeometries {
+	return &ContextGeometries{list: geometries}
 }
 
 func NewContextsFromObjects(objects []interface{}) *ContextGeometries {
