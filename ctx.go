@@ -108,6 +108,10 @@ func (o *ContextGeometry) IsSelfSimple() bool {
 }
 
 //--------------------------------------------------------------------
+func (o *ContextGeometry) AsContextGeometries(objects ...*ContextGeometry) *ContextGeometries {
+	return NewContexts(o).Extend(objects)
+}
+
 func (o *ContextGeometry) AsContextNeighbour() *ContextGeometry {
 	o.Type = ContextNeighbour
 	return o
