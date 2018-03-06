@@ -52,9 +52,13 @@ func TestCtx(t *testing.T) {
 			g.Assert([]int{list[0].I, list[0].J}).Equal(rngs[2])
 			g.Assert([]int{list[1].I, list[1].J}).Equal(rngs[1])
 			g.Assert([]int{list[2].I, list[2].J}).Equal(rngs[0])
-			//for _, h := range ctxs.list {
-			//	fmt.Println(h)
-			//}
+
+			var objects []interface{}
+			for _, h := range ctxs.list {
+				objects = append(objects, h)
+			}
+			var contexts = ConvertToContextsGeoms(objects)
+			g.Assert(len(contexts)).Equal(len(objects))
 		})
 	})
 }
