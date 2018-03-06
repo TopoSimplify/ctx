@@ -6,8 +6,17 @@ type ContextGeometries struct {
 	list []*ContextGeometry
 }
 
-func NewContexts() *ContextGeometries{
-	return &ContextGeometries{list : []*ContextGeometry{}}
+func NewContexts() *ContextGeometries {
+	return &ContextGeometries{list: []*ContextGeometry{}}
+}
+
+func NewContextsFromObjects(objects []interface{}) *ContextGeometries {
+	var n = len(objects)
+	var contexts = &ContextGeometries{list: make([]*ContextGeometry, n, n)}
+	for i, o := range objects {
+		contexts.list[i] = o.(*ContextGeometry)
+	}
+	return contexts
 }
 
 func (self *ContextGeometries) Len() int {

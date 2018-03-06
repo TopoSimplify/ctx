@@ -57,8 +57,8 @@ func TestCtx(t *testing.T) {
 			for _, h := range ctxs.list {
 				objects = append(objects, h)
 			}
-			var contexts = ConvertToContextsGeoms(objects)
-			g.Assert(len(contexts)).Equal(len(objects))
+			var contexts = NewContextsFromObjects(objects)
+			g.Assert(contexts.Len()).Equal(len(objects))
 		})
 	})
 }
