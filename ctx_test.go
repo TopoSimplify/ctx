@@ -63,6 +63,11 @@ func TestCtx(t *testing.T) {
 				contexts.DataView()[1:]...
 			)
 			g.Assert(ctxts.Len()).Equal(contexts.Len())
+
+			ctxts .Extend(contexts.DataView()[1:])
+			g.Assert(ctxts.Len() == contexts.Len()).IsFalse()
+			ctxts.SetData(contexts.DataView())
+			g.Assert(ctxts.Len() == contexts.Len()).IsTrue()
 		})
 	})
 }

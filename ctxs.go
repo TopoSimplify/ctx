@@ -49,3 +49,8 @@ func (self *ContextGeometries) Sort() *ContextGeometries {
 func (self *ContextGeometries) DataView() []*ContextGeometry {
 	return self.list
 }
+
+func (self *ContextGeometries) SetData(o []*ContextGeometry) *ContextGeometries{
+	self.list = o
+	return self
+}
