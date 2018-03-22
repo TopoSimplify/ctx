@@ -9,16 +9,16 @@ import (
 
 const (
 	Self             = "self"
-	SelfVertex       = "self_vertex"
-	SelfSegment      = "self_segment"
-	SelfSimple       = "self_simple"
-	SelfNonVertex    = "self_non_vertex"
+	PlanarVertex     = "planar_vertex"
+	NonPlanarVertex  = "non_planar_vertex"
+	PlanarSegment    = "planar_segment"
+	LinearSimple     = "linear_simple"
 	ContextNeighbour = "context_neighbour"
 )
 
 type Meta struct {
-	SelfVertices    *sset.SSet
-	SelfNonVertices *sset.SSet
+	PlanarVertices    *sset.SSet
+	NonPlanarVertices *sset.SSet
 }
 
 type ContextGeometry struct {
@@ -36,8 +36,8 @@ func New(g geom.Geometry, i, j int) *ContextGeometry {
 		I:    i,
 		J:    j,
 		Meta: &Meta{
-			SelfVertices:    sset.NewSSet(cmp.Int, 2),
-			SelfNonVertices: sset.NewSSet(cmp.Int, 2),
+			PlanarVertices:    sset.NewSSet(cmp.Int, 2),
+			NonPlanarVertices: sset.NewSSet(cmp.Int, 2),
 		},
 	}
 }
@@ -68,43 +68,43 @@ func (o *ContextGeometry) IsSelf() bool {
 }
 
 //--------------------------------------------------------------------
-func (o *ContextGeometry) AsSelfVertex() *ContextGeometry {
-	o.Type = SelfVertex
+func (o *ContextGeometry) AsPlanarVertex() *ContextGeometry {
+	o.Type = PlanarVertex
 	return o
 }
 
-func (o *ContextGeometry) IsSelfVertex() bool {
-	return o.Type == SelfVertex
+func (o *ContextGeometry) IsPlanarVertex() bool {
+	return o.Type == PlanarVertex
 }
 
 //--------------------------------------------------------------------
-func (o *ContextGeometry) AsSelfNonVertex() *ContextGeometry {
-	o.Type = SelfNonVertex
+func (o *ContextGeometry) AsNonPlanarVertex() *ContextGeometry {
+	o.Type = NonPlanarVertex
 	return o
 }
 
-func (o *ContextGeometry) IsSelfNonVertex() bool {
-	return o.Type == SelfNonVertex
+func (o *ContextGeometry) IsNonPlanarVertex() bool {
+	return o.Type == NonPlanarVertex
 }
 
 //--------------------------------------------------------------------
-func (o *ContextGeometry) AsSelfSegment() *ContextGeometry {
-	o.Type = SelfSegment
+func (o *ContextGeometry) AsPlanarSegment() *ContextGeometry {
+	o.Type = PlanarSegment
 	return o
 }
 
-func (o *ContextGeometry) IsSelfSegment() bool {
-	return o.Type == SelfSegment
+func (o *ContextGeometry) IsPlanarSegment() bool {
+	return o.Type == PlanarSegment
 }
 
 //--------------------------------------------------------------------
-func (o *ContextGeometry) AsSelfSimple() *ContextGeometry {
-	o.Type = SelfSimple
+func (o *ContextGeometry) AsLinearSimple() *ContextGeometry {
+	o.Type = LinearSimple
 	return o
 }
 
-func (o *ContextGeometry) IsSelfSimple() bool {
-	return o.Type == SelfSimple
+func (o *ContextGeometry) IsLinearSimple() bool {
+	return o.Type == LinearSimple
 }
 
 //--------------------------------------------------------------------

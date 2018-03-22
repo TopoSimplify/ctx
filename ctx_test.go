@@ -24,11 +24,11 @@ func TestCtx(t *testing.T) {
 
 			g.Assert(ctxG.IsSelf()).IsTrue()
 			g.Assert(ctxG.AsSelf().IsSelf()).IsTrue()
-			g.Assert(ctxG.AsSelfVertex().IsSelfVertex())
-			g.Assert(ctxG.AsSelfNonVertex().IsSelfNonVertex())
-			g.Assert(ctxG.AsSelfSegment().IsSelfSegment())
-			g.Assert(ctxG.AsSelfSimple().IsSelfSimple())
-			g.Assert(ctxG.AsSelfNonVertex().IsSelfNonVertex())
+			g.Assert(ctxG.AsPlanarVertex().IsPlanarVertex())
+			g.Assert(ctxG.AsNonPlanarVertex().IsNonPlanarVertex())
+			g.Assert(ctxG.AsPlanarSegment().IsPlanarSegment())
+			g.Assert(ctxG.AsLinearSimple().IsLinearSimple())
+			g.Assert(ctxG.AsNonPlanarVertex().IsNonPlanarVertex())
 			g.Assert(ctxG.AsContextNeighbour().IsContextNeighbour())
 		})
 
