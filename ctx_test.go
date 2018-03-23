@@ -1,10 +1,10 @@
 package ctx
 
 import (
+	"time"
 	"testing"
 	"github.com/intdxdt/geom"
 	"github.com/franela/goblin"
-	"time"
 )
 
 func TestCtx(t *testing.T) {

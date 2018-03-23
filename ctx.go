@@ -2,9 +2,7 @@ package ctx
 
 import (
 	"github.com/intdxdt/mbr"
-	"github.com/intdxdt/cmp"
 	"github.com/intdxdt/geom"
-	"github.com/intdxdt/sset"
 )
 
 const (
@@ -17,8 +15,8 @@ const (
 )
 
 type Meta struct {
-	PlanarVertices    *sset.SSet
-	NonPlanarVertices *sset.SSet
+	Planar    []int
+	NonPlanar []int
 }
 
 type ContextGeometry struct {
@@ -35,10 +33,7 @@ func New(g geom.Geometry, i, j int) *ContextGeometry {
 		Type: Self,
 		I:    i,
 		J:    j,
-		Meta: &Meta{
-			PlanarVertices:    sset.NewSSet(cmp.Int, 2),
-			NonPlanarVertices: sset.NewSSet(cmp.Int, 2),
-		},
+		Meta: &Meta{},
 	}
 }
 
@@ -47,7 +42,7 @@ func (o *ContextGeometry) String() string {
 	return o.Geom.WKT()
 }
 
-//implements igeom interface
+//implements IGeom interface
 func (o *ContextGeometry) Geometry() geom.Geometry {
 	return o.Geom
 }

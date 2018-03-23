@@ -12,7 +12,7 @@ func linearCoords(wkt string) []*geom.Point {
 //create ctx geometries
 func ctxGeoms(indxs [][]int, coords []*geom.Point) []*ContextGeometry {
 
-	var hulls = []*ContextGeometry{}
+	var hulls []*ContextGeometry
 	for _, o := range indxs {
 		var r = rng.NewRange(o[0], o[1])
 		var c = coords[r.I:r.J+1]
