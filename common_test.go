@@ -1,8 +1,8 @@
 package ctx
 
 import (
-	"simplex/rng"
 	"github.com/intdxdt/geom"
+	"github.com/TopoSimplify/rng"
 )
 
 func linearCoords(wkt string) []*geom.Point {
