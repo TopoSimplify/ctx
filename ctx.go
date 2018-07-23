@@ -117,6 +117,6 @@ func (o *ContextGeometry) IsContextNeighbour() bool {
 }
 
 //--------------------------------------------------------------------
-func (o *ContextGeometry) Intersection(other geom.Geometry) []*geom.Point {
+func (o *ContextGeometry) Intersection(other geom.Geometry) []geom.Point {
 	return o.Geom.Intersection(other)
 }
