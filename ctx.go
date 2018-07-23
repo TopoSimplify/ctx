@@ -52,6 +52,11 @@ func (o *ContextGeometry) BBox() *mbr.MBR {
 	return o.Geom.BBox()
 }
 
+//implements bbox interface
+func (o *ContextGeometry) Bounds() mbr.MBR {
+	return *o.BBox()
+}
+
 //--------------------------------------------------------------------
 func (o *ContextGeometry) AsSelf() *ContextGeometry {
 	o.Type = Self
