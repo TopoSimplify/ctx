@@ -8,7 +8,7 @@ import (
 )
 
 func TestCtx(t *testing.T) {
-	g := goblin.Goblin(t)
+	var g = goblin.Goblin(t)
 	g.Describe("context neighbours", func() {
 
 		g.It("should test context neighbours", func() {
@@ -20,6 +20,9 @@ func TestCtx(t *testing.T) {
 			g.Assert(len(inters) == 1).IsTrue()
 			g.Assert(inters[0].Equals2D(&ctxGeom)).IsTrue()
 			g.Assert(ctxG.BBox().IsPoint()).IsTrue()
+
+			var box = ctxG.Bounds()
+			g.Assert(box.IsPoint()).IsTrue()
 			g.Assert(ctxG.String() == ctxGeom.WKT()).IsTrue()
 
 			g.Assert(ctxG.IsSelf()).IsTrue()
@@ -38,6 +41,7 @@ func TestCtx(t *testing.T) {
 			var rngs = [][]int{{12, len(coords) - 1}, {8, 12}, {0, 8}}
 			var ctxs = NewContexts()
 			g.Assert(ctxs.Len()).Equal(0)
+
 			var gs = ctxGeoms(rngs, coords)
 			ctxs.Push(gs[0])
 			ctxs.Extend(gs[1:])
