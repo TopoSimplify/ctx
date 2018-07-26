@@ -20,20 +20,20 @@ type Meta struct {
 }
 
 type ContextGeometry struct {
-	Geom geom.Geometry
-	Type string
-	I    int
-	J    int
-	Meta *Meta
+	Geom    geom.Geometry
+	CtxType string
+	I       int
+	J       int
+	Meta    *Meta
 }
 
 func New(g geom.Geometry, i, j int) *ContextGeometry {
 	return &ContextGeometry{
-		Geom: g,
-		Type: Self,
-		I:    i,
-		J:    j,
-		Meta: &Meta{},
+		Geom:    g,
+		CtxType: Self,
+		I:       i,
+		J:       j,
+		Meta:    &Meta{},
 	}
 }
 
@@ -47,64 +47,93 @@ func (o *ContextGeometry) Geometry() geom.Geometry {
 	return o.Geom
 }
 
-//implements bbox interface
+//BBox
 func (o *ContextGeometry) BBox() *mbr.MBR {
 	return o.Geom.BBox()
 }
 
-//implements bbox interface
+//Bounds
 func (o *ContextGeometry) Bounds() mbr.MBR {
 	return *o.BBox()
 }
 
+//AsLinear
+func (o *ContextGeometry) AsLinear() []*geom.LineString {
+	return o.Geom.AsLinear()
+}
+
+//Intersects
+func (o *ContextGeometry) Intersects(other geom.Geometry) bool {
+	return o.Geom.Intersects(other)
+}
+
+//Intersection
+func (o *ContextGeometry) Intersection(other geom.Geometry) []geom.Point {
+	return o.Geom.Intersection(other)
+}
+
+//Distance
+func (o *ContextGeometry) Distance(other geom.Geometry) float64 {
+	return o.Geom.Distance(other)
+}
+
+//Type
+func (o *ContextGeometry) Type() geom.GeoType {
+	return o.Geom.Type()
+}
+
+//Distance
+func (o *ContextGeometry) WKT() string {
+	return o.Geom.WKT()
+}
+
 //--------------------------------------------------------------------
 func (o *ContextGeometry) AsSelf() *ContextGeometry {
-	o.Type = Self
+	o.CtxType = Self
 	return o
 }
 
 func (o *ContextGeometry) IsSelf() bool {
-	return o.Type == Self
+	return o.CtxType == Self
 }
-
 //--------------------------------------------------------------------
 func (o *ContextGeometry) AsPlanarVertex() *ContextGeometry {
-	o.Type = PlanarVertex
+	o.CtxType = PlanarVertex
 	return o
 }
 
 func (o *ContextGeometry) IsPlanarVertex() bool {
-	return o.Type == PlanarVertex
+	return o.CtxType == PlanarVertex
 }
 
 //--------------------------------------------------------------------
 func (o *ContextGeometry) AsNonPlanarVertex() *ContextGeometry {
-	o.Type = NonPlanarVertex
+	o.CtxType = NonPlanarVertex
 	return o
 }
 
 func (o *ContextGeometry) IsNonPlanarVertex() bool {
-	return o.Type == NonPlanarVertex
+	return o.CtxType == NonPlanarVertex
 }
 
 //--------------------------------------------------------------------
 func (o *ContextGeometry) AsPlanarSegment() *ContextGeometry {
-	o.Type = PlanarSegment
+	o.CtxType = PlanarSegment
 	return o
 }
 
 func (o *ContextGeometry) IsPlanarSegment() bool {
-	return o.Type == PlanarSegment
+	return o.CtxType == PlanarSegment
 }
 
 //--------------------------------------------------------------------
 func (o *ContextGeometry) AsLinearSimple() *ContextGeometry {
-	o.Type = LinearSimple
+	o.CtxType = LinearSimple
 	return o
 }
 
 func (o *ContextGeometry) IsLinearSimple() bool {
-	return o.Type == LinearSimple
+	return o.CtxType == LinearSimple
 }
 
 //--------------------------------------------------------------------
@@ -113,15 +142,12 @@ func (o *ContextGeometry) AsContextGeometries(objects ...*ContextGeometry) *Cont
 }
 
 func (o *ContextGeometry) AsContextNeighbour() *ContextGeometry {
-	o.Type = ContextNeighbour
+	o.CtxType = ContextNeighbour
 	return o
 }
 
 func (o *ContextGeometry) IsContextNeighbour() bool {
-	return o.Type == ContextNeighbour
+	return o.CtxType == ContextNeighbour
 }
 
 //--------------------------------------------------------------------
-func (o *ContextGeometry) Intersection(other geom.Geometry) []geom.Point {
-	return o.Geom.Intersection(other)
-}

@@ -12,9 +12,9 @@ func TestCtx(t *testing.T) {
 	g.Describe("context neighbours", func() {
 
 		g.It("should test context neighbours", func() {
-			lnGeom := geom.NewLineString([]geom.Point{{0, 0}, {5, 5}})
-			ctxGeom := geom.Pt(2.5, 2.5)
-			ctxG := New(ctxGeom, 0, -1)
+			var lnGeom  = geom.NewLineString([]geom.Point{{0, 0}, {5, 5}})
+			var ctxGeom = geom.Pt(2.5, 2.5)
+			var ctxG    = New(ctxGeom, 0, -1)
 
 			inters := ctxG.Intersection(lnGeom)
 			g.Assert(len(inters) == 1).IsTrue()
