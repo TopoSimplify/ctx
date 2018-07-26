@@ -24,7 +24,7 @@ type ContextGeometry struct {
 	CtxType string
 	I       int
 	J       int
-	Meta    *Meta
+	Meta    Meta
 }
 
 func New(g geom.Geometry, i, j int) *ContextGeometry {
@@ -33,7 +33,7 @@ func New(g geom.Geometry, i, j int) *ContextGeometry {
 		CtxType: Self,
 		I:       i,
 		J:       j,
-		Meta:    &Meta{},
+		Meta:    Meta{},
 	}
 }
 
@@ -149,5 +149,4 @@ func (o *ContextGeometry) AsContextNeighbour() *ContextGeometry {
 func (o *ContextGeometry) IsContextNeighbour() bool {
 	return o.CtxType == ContextNeighbour
 }
-
 //--------------------------------------------------------------------

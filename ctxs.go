@@ -12,9 +12,9 @@ func NewContexts(geometries ...*ContextGeometry) *ContextGeometries {
 
 func NewContextsFromObjects(objects []interface{}) *ContextGeometries {
 	var n = len(objects)
-	var contexts = &ContextGeometries{list: make([]*ContextGeometry, n, n)}
-	for i, o := range objects {
-		contexts.list[i] = o.(*ContextGeometry)
+	var contexts = &ContextGeometries{list: make([]*ContextGeometry, 0, n)}
+	for i := range objects {
+		contexts.list = append(contexts.list, objects[i].(*ContextGeometry))
 	}
 	return contexts
 }

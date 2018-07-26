@@ -10,7 +10,6 @@ import (
 func TestCtx(t *testing.T) {
 	var g = goblin.Goblin(t)
 	g.Describe("context neighbours", func() {
-
 		g.It("should test context neighbours", func() {
 			var lnGeom  = geom.NewLineString([]geom.Point{{0, 0}, {5, 5}})
 			var ctxGeom = geom.Pt(2.5, 2.5)
