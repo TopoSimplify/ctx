@@ -11,7 +11,7 @@ func TestCtx(t *testing.T) {
 	var g = goblin.Goblin(t)
 	g.Describe("context neighbours", func() {
 		g.It("should test context neighbours", func() {
-			var lnGeom  = geom.NewLineString([]geom.Point{{0, 0}, {5, 5}})
+			var lnGeom  = geom.NewLineString(geom.Coordinates([]geom.Point{{0, 0}, {5, 5}}))
 			var ctxGeom = geom.Pt(2.5, 2.5)
 			var ctxG    = New(ctxGeom, 0, -1)
 
@@ -37,7 +37,7 @@ func TestCtx(t *testing.T) {
 		g.It("should test context neighbours", func() {
 			g.Timeout(1 * time.Hour)
 			coords := linearCoords("LINESTRING ( 960 840, 980 840, 980 880, 1020 900, 1080 880, 1120 860, 1160 800, 1160 760, 1140 700, 1080 700, 1040 720, 1060 760, 1120 800, 1080 840, 1020 820, 940 760 )")
-			var rngs = [][]int{{12, len(coords) - 1}, {8, 12}, {0, 8}}
+			var rngs = [][]int{{12, coords.Len() - 1}, {8, 12}, {0, 8}}
 			var ctxs = NewContexts()
 			g.Assert(ctxs.Len()).Equal(0)
 

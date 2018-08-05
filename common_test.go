@@ -5,17 +5,16 @@ import (
 	"github.com/TopoSimplify/rng"
 )
 
-func linearCoords(wkt string) []geom.Point {
-	return geom.NewLineStringFromWKT(wkt).Coordinates()
+func linearCoords(wkt string) geom.Coords {
+	return geom.NewLineStringFromWKT(wkt).Coordinates
 }
 
 //create ctx geometries
-func ctxGeoms(indxs [][]int, coords []geom.Point) []*ContextGeometry {
+func ctxGeoms(indxs [][]int, coords geom.Coords) []*ContextGeometry {
 	var hulls []*ContextGeometry
 	for _, o := range indxs {
 		var r = rng.Range(o[0], o[1])
-		var c = coords[r.I:r.J+1]
-		var g = hullGeom(c)
+		var g = hullGeom(coords.Slice(r.I, r.J+1))
 		var cg = New(g, r.I, r.J)
 		hulls = append(hulls, cg)
 	}
@@ -24,15 +23,15 @@ func ctxGeoms(indxs [][]int, coords []geom.Point) []*ContextGeometry {
 
 
 //hull geom
-func hullGeom(coords []geom.Point) geom.Geometry {
+func hullGeom(coords geom.Coords) geom.Geometry {
 	var g geom.Geometry
-
-	if len(coords) > 2 {
+	var n = coords.Len()
+	if n > 2 {
 		g = geom.NewPolygon(coords)
-	} else if len(coords) == 2 {
+	} else if n == 2 {
 		g = geom.NewLineString(coords)
 	} else {
-		g = coords[0]
+		g = coords.Pt(0)
 	}
 	return g
 }
