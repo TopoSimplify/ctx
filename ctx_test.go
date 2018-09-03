@@ -62,7 +62,7 @@ func TestCtx(t *testing.T) {
 			}
 			var contexts = NewContextsFromObjects(objects)
 			g.Assert(contexts.Len()).Equal(len(objects))
-			ctxts := contexts.DataView()[0].AsContextGeometries(
+			var ctxts = contexts.DataView()[0].AsContextGeometries(
 				contexts.DataView()[1:]...
 			)
 			g.Assert(ctxts.Len()).Equal(contexts.Len())

@@ -96,6 +96,7 @@ func (o *ContextGeometry) AsSelf() *ContextGeometry {
 func (o *ContextGeometry) IsSelf() bool {
 	return o.CtxType == Self
 }
+
 //--------------------------------------------------------------------
 func (o *ContextGeometry) AsPlanarVertex() *ContextGeometry {
 	o.CtxType = PlanarVertex
@@ -149,4 +150,5 @@ func (o *ContextGeometry) AsContextNeighbour() *ContextGeometry {
 func (o *ContextGeometry) IsContextNeighbour() bool {
 	return o.CtxType == ContextNeighbour
 }
+
 //--------------------------------------------------------------------
