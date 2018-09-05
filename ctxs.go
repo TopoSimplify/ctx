@@ -2,16 +2,7 @@ package ctx
 
 import (
 	"sort"
-	"sync"
 )
-
-var ContextsPool = sync.Pool{
-	New: func() interface{} {
-		var contexs = new(ContextGeometries)
-		contexs.list = contexs.list[:0]
-		return contexs
-	},
-}
 
 type ContextGeometries struct {
 	list []*ContextGeometry
