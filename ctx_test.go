@@ -1,19 +1,19 @@
 package ctx
 
 import (
-	"time"
-	"testing"
-	"github.com/intdxdt/geom"
 	"github.com/franela/goblin"
+	"github.com/intdxdt/geom"
+	"testing"
+	"time"
 )
 
 func TestCtx(t *testing.T) {
 	var g = goblin.Goblin(t)
 	g.Describe("context neighbours", func() {
 		g.It("should test context neighbours", func() {
-			var lnGeom  = geom.NewLineString(geom.Coordinates([]geom.Point{{0, 0}, {5, 5}}))
+			var lnGeom = geom.NewLineString(geom.Coordinates([]geom.Point{{0, 0}, {5, 5}}))
 			var ctxGeom = geom.Pt(2.5, 2.5)
-			var ctxG    = New(ctxGeom, 0, -1)
+			var ctxG = New(ctxGeom, 0, -1)
 
 			inters := ctxG.Intersection(lnGeom)
 			g.Assert(len(inters) == 1).IsTrue()
@@ -67,7 +67,7 @@ func TestCtx(t *testing.T) {
 			)
 			g.Assert(ctxts.Len()).Equal(contexts.Len())
 
-			ctxts .Extend(contexts.DataView()[1:])
+			ctxts.Extend(contexts.DataView()[1:])
 			g.Assert(ctxts.Len() == contexts.Len()).IsFalse()
 			ctxts.SetData(contexts.DataView())
 			g.Assert(ctxts.Len() == contexts.Len()).IsTrue()

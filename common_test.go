@@ -1,8 +1,8 @@
 package ctx
 
 import (
-	"github.com/intdxdt/geom"
 	"github.com/TopoSimplify/rng"
+	"github.com/intdxdt/geom"
 )
 
 func linearCoords(wkt string) geom.Coords {
@@ -20,7 +20,6 @@ func ctxGeoms(indxs [][]int, coords geom.Coords) []*ContextGeometry {
 	}
 	return hulls
 }
-
 
 //hull geom
 func hullGeom(coords geom.Coords) geom.Geometry {
